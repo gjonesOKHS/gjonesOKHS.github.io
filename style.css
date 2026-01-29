@@ -1,22 +1,23 @@
 body {
     background: #715B64;
-    color: #437C90;
-    padding: 10px;
+    color:#437C90;
+    padding:120px;
     font-family:Arial, sans-serif;
 }
 
 #all-contents {
     max-width: 
-    800px;
+    1200px;
     margin: auto;
 }
 
 /* navigation menu */
 nav {
-    background: rgb(239, 80, 41);
-    margin: 0 auto;
-    display: flex;
-    padding: 10px;
+    background:#437C90 ;
+    border: 10px #91E5F6 ridge;
+    margin: 10px;
+    display:10px;
+    padding:10px;
 }
 
 h1 {
@@ -46,9 +47,10 @@ a {
 
 /* main container area beneath menu */
 main {
-    background: rgb(245, 238, 219);
+    background: #2D3047;
     display: flex;
     margin-top: 20px;
+    border:10px #437C90 ridge;
 }
 
 .sidebar {
@@ -70,6 +72,7 @@ main {
     border: 4px silver ridge;
     padding: 8px;
     margin-top: 20px;
+    
 }
 
 h2, h3 {
