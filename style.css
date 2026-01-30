@@ -11,19 +11,18 @@ body {
     margin: auto;
 }
 
-/* navigation menu */
 nav {
     background:#437C90 ;
     border: 10px #91E5F6 ridge;
     margin: 10px;
-    display:10px;
+    display: flex;
     padding:10px;
 }
 
 h1 {
     display: flex;
     align-items: center;
-    color: white;
+    color: #91E5F6;
     flex: 1;
     margin: 0;
 }
@@ -45,7 +44,6 @@ a {
     color: #fff;
 }
 
-/* main container area beneath menu */
 main {
     background: #2D3047;
     display: flex;
@@ -55,11 +53,11 @@ main {
 
 .sidebar {
     margin-right: 25px;
-    padding: 10px;
+    padding: 15px;
 }
 
 .sidebar-img {
-    width: 200px;
+    width: 250px;
 }
 
 .content {
@@ -67,10 +65,9 @@ main {
     padding: 15px;
 }
 
-/* interests section styles */
 #interests {
-    border: 4px silver ridge;
-    padding: 8px;
+    border: 10px ridge #91E5F6;
+    padding: 10px;
     margin-top: 20px;
     
 }
