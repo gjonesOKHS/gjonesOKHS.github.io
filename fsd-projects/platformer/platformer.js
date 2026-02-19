@@ -51,7 +51,7 @@ $(function () {
 
 
     // TODO 3 - Create Collectables
-        createCollectable("ring", 310, 230);
+        createCollectable("ring", 310, 200);
         createCollectable("ring", 750, 250);
         createCollectable("ring", 1350, 500);
         createCollectable("ring", 210, 700);
