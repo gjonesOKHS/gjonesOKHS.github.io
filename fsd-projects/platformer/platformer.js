@@ -31,22 +31,22 @@ $(function () {
 
 
     // TODO 2 - Create Platforms
-        createPlatform(0, 375, 75, 15, "blue");
-        createPlatform(0, 625, 75, 15, "blue");
-        createPlatform(350, 250, 20, 500, "blue");
-        createPlatform(275, 250, 95, 15, "blue");
-        createPlatform(350, 375, 75, 15, "blue");
-        createPlatform(275, 500, 75, 15, "blue");
-        createPlatform(350, 600, 75, 15, "blue");
-        createPlatform(700, 0, 15, 500, "blue");
-        createPlatform(625, 500, 75, 15, "blue");
-        createPlatform(1050, 375, 15, 375, "blue");
-        createPlatform(1050, 375, 75, 15, "blue");
-        createPlatform(975, 600, 90, 15, "blue");
-        createPlatform(1350, 600, 100, 15, "blue");
-        createPlatform(700, 300, 85, 15 , "blue");
-        createPlatform(800, 500, 100, 15, "blue");
-        createPlatform(1200, 500, 50, 15, "blue");
+        createPlatform(0, 375, 75, 15, "purple");
+        createPlatform(0, 625, 75, 15, "purple");
+        createPlatform(350, 250, 20, 500, "purpe");
+        createPlatform(275, 250, 95, 15, "purple");
+        createPlatform(350, 375, 75, 15, "purple");
+        createPlatform(275, 500, 75, 15, "purple");
+        createPlatform(350, 600, 75, 15, "purple");
+        createPlatform(700, 0, 15, 500, "purple");
+        createPlatform(625, 500, 75, 15, "purple");
+        createPlatform(1050, 375, 15, 375, "purple");
+        createPlatform(1050, 375, 75, 15, "purple");
+        createPlatform(975, 600, 90, 15, "purple");
+        createPlatform(1350, 600, 100, 15, "purple");
+        createPlatform(700, 300, 85, 15 , "purple");
+        createPlatform(800, 500, 100, 15, "purple");
+        createPlatform(1200, 500, 50, 15, "purple");
 
 
 

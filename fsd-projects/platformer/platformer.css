@@ -5,8 +5,13 @@ body {
 canvas {
   background-color: rgb(219, 28, 28);
   margin: 20px;
+  background-image: url("https://s3.envato.com/files/c869cf0a-78f1-46c5-afe8-242a94290a97/inline_image_preview.jpg");
+  background-size: cover;
 }
+
 
 img {
   display: none;
+  
+
 }
