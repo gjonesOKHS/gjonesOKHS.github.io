@@ -76,7 +76,9 @@
           var positionX = 0;
           var points = 0;
           var speed = 10
-          
+          var positionY = 0.1;
+          var speedY = 10;
+          var boardHeight = jQuery(window).height();
 
 
 
@@ -87,7 +89,12 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-          moveBoxTo(positionX);
+          moveBoxTo(positionX, positionY); {
+            positionX += speed;
+            positionY += speedY
+            if (position)
+            
+          }
 
           positionX = positionX + speed;
 
