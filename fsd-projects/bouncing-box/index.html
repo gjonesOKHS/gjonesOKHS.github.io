@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -14,10 +14,8 @@
         display: block;
         position: absolute;
         top: 100px;
-        background-color: blanchedalmond;
-      
+        background-color: rgb(152, 22, 146);
       }
-
 
       .board {
         height: 100vh;
@@ -56,11 +54,11 @@
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
 
-
-
         // moves the Box to a new position on the screen along the X-Axis
         function moveBoxTo(newPositionX) {
           box.css("left", newPositionX);
+          box.css("top", newPositionY);
+          
         }
 
         // changes the text displayed on the Box
@@ -73,15 +71,16 @@
         //////////////////////////////////////////////////////////////////
 
         // TODO 2 - Variable declarations
-          var positionX = 0;
-          var points = 0;
-          var speed = 10
-          var positionY = 0.1;
-          var speedY = 10;
-          var boardHeight = jQuery(window).height();
-
-
-
+        var positionX = 0;
+        var points = 0;
+        var speed = 10;
+        var positionY = 0;
+        var speedY = 10;
+        var boardHeight = jQuery(window).height();
+        var randNum = Math.random() * 100;
+        var colorStr = "rgb(50, 25, 250)";
+        var randomNumberBetween0and10 = Math.random() * 10;
+        var interval = setinterval(update, 50);
 
         /**
          * This Function will be called 20 times/second.
@@ -89,29 +88,25 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-          moveBoxTo(positionX, positionY); {
-            positionX += speed;
-            positionY += speedY
-            if (position)
-            
-          }
-
-          positionX = positionX + speed;
-
-          if(positionX >= boardWidth) {
+         
+          if (positionX >= boardWidth) {
             speed *= -1;
-          }
-
+           moveBoxTo(positionX, positionY);
+          positionX += speed;
+          positionY += speedY;
+        }
           if (positionX < 0) {
             speed *= -1;
           }
-
-          
-          
-
-        
-
-          
+          if (positionY > boardHeight) {
+            speedY = speedY * -1;
+          }
+          if (positionY < 0) {
+            speedY = speedY * -1;
+          }
+           moveBoxTo(positionX, positionY);
+          positionX += speed;
+          positionY += speedY;
         }
 
         /**
@@ -122,20 +117,17 @@
          * - move the box to the left side of the screen.
          */
         function handleBoxClick() {
-
           positionX = 0;
-          changeBoxText (points);
-          points ++;
+          positionY = 0;
+          changeBoxText(points);
+          points++;
           speed = 3 * points + 10;
-
-
-
-
-
+          speedY = 3 * points + 10;
+        }
+        function endGame() {
+          clearInerval(interval);
         }
 
-
-        
       })();
     </script>
   </body>
