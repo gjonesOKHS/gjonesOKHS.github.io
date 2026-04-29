@@ -32,7 +32,7 @@ var init = function (window) {
             circles.push(circle);
         }
        
-        Gamification.init({
+    Gamification.init({
         canvas: canvas,
         view: view,
         draw: draw,
