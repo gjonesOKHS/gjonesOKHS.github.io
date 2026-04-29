@@ -32,9 +32,10 @@ var init = function (window) {
             circles.push(circle);
         }
        
-       Gamification.init({
+        Gamification.init({
         canvas: canvas,
-        view: draw,
+        view: view,
+        draw: draw,
         physikz: physikz,
         circles: circles,
         game: game
@@ -65,8 +66,8 @@ var init = function (window) {
             
            
             // TODO 8 / TODO 9 : Iterate over the array
-          for (var i = 0; i < circle.length; i++) {
-            physikz.updatePosition(circle[i]);
+          for (var i = 0; i < circles.length; i++) {
+            physikz.updatePosition(circles[i]);
             game.checkCirclePosition(circles[i]);
           } 
         
@@ -81,22 +82,18 @@ var init = function (window) {
         game.checkCirclePosition = function(circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-            if ( circle.x > canvas.width ) {
+            if (circle.x > canvas.width ) {
                 circle.x = 0;
             }
-            
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-             else if ( circle.x < 0 ) {
+             else if ( circle.x < 0) {
                 circle.x = canvas.width
              }
-            }
             if (circle.y > canvas.height) {
                 circle.y = 0;
-            } else if ( circle.y < 0 ) {
+            } else if ( circle.y < 0) {
                 circle.y = canvas.height;
             }
-
-
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
         }
         
