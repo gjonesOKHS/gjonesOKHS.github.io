@@ -38,7 +38,7 @@ $(document).ready(function () {
   var shape = {
     color: "blue",
     shape: "circle",
-    repeat: 3,
+    repeat: 3
   };
 
   dataShapes.push(shape);
@@ -52,8 +52,8 @@ $(document).ready(function () {
     currentShape["goodBehavior"] = "blink";
   } else {
     currentShape["goodBehavior"] = "spin";
-  };
- };
+  }
+ }
 
   // TODO 3-a: add a function that handles the static display type
  function handleStatic(data) {
@@ -85,14 +85,14 @@ $(document).ready(function () {
 
   function staticDisplay() {
     // TODO 3-b: call your handleStatic function
-  handleStatic(dataShapes[currentIndex]);
+    handleStatic(dataShapes[currentIndex]);
   }
 
   function goodDisplay() {
     // TODO 4-b: call your handleGood function
-  var currentShape = dataShapes[currentIndex];  
-  handleGood(currentShape.color, currentShape.shape, currentShape.repeat);
-}
+    var currentShape = dataShapes[currentIndex];  
+    handleGood(currentShape.color, currentShape.shape, currentShape.repeat);
+  }
 
   function badDisplay() {
     // TODO 5-b: call your handleBad function
