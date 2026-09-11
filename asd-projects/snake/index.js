@@ -50,13 +50,13 @@ function init() {
   snake.body = [];
   makeSnakeSquare(10, 10);
   makeSnakeSquare(10, 9);
-  makeSnakeSquare(10, 8); 
+  makeSnakeSquare(10, 8);
   snake.head = snake.body[0];
   // TODO 4, Part 3: initialize the apple
   makeApple();
 
   // TODO 6, Part 1: Initialize the interval
-  updateInterval = setInterval(update,100);
+  updateInterval = setInterval(update, 100);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -73,15 +73,13 @@ function update() {
     moveSnake();
   }
 
-  if (hasHitWall() || 
-  hasCollidedWithSnake()) {
+  if (hasHitWall() || hasCollidedWithSnake()) {
     endGame();
-  } 
+  }
 
   if (hasCollidedWithApple()) {
     handleAppleCollision();
   }
-  console.log("updating...");
 }
 
 function checkForNewDirection(event) {
@@ -94,17 +92,14 @@ function checkForNewDirection(event) {
 
   if (activeKey === KEY.LEFT) {
     snake.head.direction = "left";
-  }
-
-  // FILL IN THE REST
-  if (activeKey === KEY.RIGHT) {
+  } else if (activeKey === KEY.RIGHT) {
     snake.head.direction = "right";
+  } else if (activeKey === KEY.DOWN) {
+    snake.head.direction = "down";
   } else if (activeKey === KEY.UP) {
     snake.head.direction = "up";
-  } else if (activeKey === KEY.DOWN) {
-    snake.head.direction = "down"
   }
-  // console.log(snake.head.direction);     // uncomment me!
+  console.log(snake.head.direction); // uncomment me!
 }
 
 function moveSnake() {
@@ -116,33 +111,46 @@ function moveSnake() {
     stored in the Array snake.body and each part knows its current 
     column/row properties. 
   */
+  for (let i = snake.body.length - 1; i > 0; i--) {
+    var currentSnakeSquare = snake.body[i];
+    var snakeSquareInFront = snake.body[i - 1];
 
-  //Before moving the head, check for a new direction from the keyboard input
-  checkForNewDirection();
+    //Before moving the head, check for a new direction from the keyboard input
+    checkForNewDirection();
 
-  /* 
+    /* 
     TODO 8: determine the next row and column for the snake's head
     if (snake.head.direction === "left") {
   snake.head.column = snake.head.column - 1;
-}
-
-    HINT: The snake's head will need to move forward 1 square based on the value
+  HINT: The snake's head will need to move forward 1 square based on the value
     of snake.head.direction which may be one of "left", "right", "up", or "down"
   */
-  if (snake.head.direction === "left") {
-  snake.head.column = snake.head.column - 1;
-  } else if (snake.head.direction === "right") {
-    snake.head.column = snake.head.column -1;
-  } else if (snake.head.direction === "up") {
-    snake.head.column = snake.head.column -1;
-  } else if (snake.head.direction === "down") {
-    snake.head.column = snake.head.column -1;
+    if (snake.head.direction === "left") {
+      snake.head.column = snake.head.column - 1;
+    } else if (snake.head.direction === "right") {
+      snake.head.column = snake.head.column + 1;
+    } else if (snake.head.direction === "down") {
+      snake.head.column = snake.head.column + 1;
+    } else if (snake.head.direction === "up") {
+      snake.head.column = snake.head.column - 1;
+    }
+    repositionSquare(snake.head);
+    console.log("Head is at:", snake.head.row, snake.head.column);
+    console.log("Direction:", snake.head.direction);
   }
-
 }
 
-// TODO 9: Create a new helper function
-
+// TODO 9:
+// Create a new helper function
+function moveBodyAToBodyB(bodyA, bodyB) {
+  bodyA.row = bodyB.row;
+  bodyA.column = bodyB.column;
+  bodyA.direction = bodyB.direction;
+}
+setTimeout(() => {
+  moveBodyAToBodyB(snake.body[1], snake.head);
+  repositionSquare(snake.body[1]);
+}, 2_000);
 function hasHitWall() {
   /* 
     TODO 11: Should return true if the snake's head has collided with the four walls of the
@@ -150,6 +158,12 @@ function hasHitWall() {
     
     HINT: What will the row and column of the snake's head be if this were the case?
   */
+  if (snake.head.row < 0 || snake.head.row >= ROWS + 1) {
+    return true;
+  }
+  if (snake.head.column < 0 || snake.head.column >= COLUMNS + 1) {
+    return true;
+  }
 
   return false;
 }
@@ -161,6 +175,9 @@ function hasCollidedWithApple() {
     
     HINT: Both the apple and the snake's head are aware of their own row and column
   */
+  if (snake.head.row === apple.row && snake.head.column === apple.column) {
+    return true;
+  }
 
   return false;
 }
@@ -188,7 +205,14 @@ function hasCollidedWithSnake() {
     HINT: Each part of the snake's body is stored in the snake.body Array. The
     head and each part of the snake's body also knows its own row and column.
   */
-
+  for (let i = 1; i <= snake.body.length - 1; i++) {
+    if (
+      snake.body[i].row === snake.head.row &&
+      snake.body[i].column === snake.head.column
+    ) {
+      return true;
+    }
+  }
   return false;
 }
 
@@ -242,8 +266,6 @@ function makeSnakeSquare(row, column) {
   snake.body.push(snakeSquare);
   snake.tail = snakeSquare;
 }
-
-
 
 /* 
   event.which returns the keycode of the key that is pressed when the
