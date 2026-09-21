@@ -9,14 +9,14 @@ $(document).ready(function () {
     .css("left", 50)
     .appendTo("#die");
 
-  $("<div2>")
+  $("<div>")
     .css("height", 15)
     .css("width", 15)
-    .css("background-color", "teal")
+    .css("background-color", "black")
     .css("position", "absolute")
     .css("top", 50)
     .css("left", 50)
-    .appendTo("#secondDie");
+    .appendTo("#die2");
 
   function makeDot(top, left, elementID) {
     $("<div>")
@@ -54,12 +54,12 @@ $(document).ready(function () {
       makeDot(25, 75, elementID);
       makeDot(75, 25, elementID);
     } else if (randomNum === 6) {
-      makeDot(25, 75, elementID);
-      makeDot(50, 75, elementID);
       makeDot(75, 75, elementID);
       makeDot(25, 25, elementID);
-      makeDot(50, 25, elementID);
+      makeDot(25, 75, elementID);
       makeDot(75, 25, elementID);
+      makeDot(50, 25, elementID);
+      makeDot(50, 75, elementID);
     }
   }
 
@@ -68,9 +68,9 @@ $(document).ready(function () {
   }
 
   function handleClick2() {
-    rollDie("#secondDie");
+    rollDie("#die2");
   }
 
   $("#die").on("click", handleClick);
-  $("#secondDie").on("click", handleClick2);
+  $("#die2").on("click", handleClick2);
 });
