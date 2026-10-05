@@ -12,8 +12,29 @@ function runProgram(){
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   
   // Game Item Objects
-
-
+  const walker = {
+    x: 0,
+    y: 0,
+    speedX: 0,
+    speedY: 0
+  }
+  const walker2 = {
+    x: 0,
+    y: 0,
+    speedX: 0,
+    speedY: 0
+  }
+  const KEY = {
+    LEFT: 37,
+    UP: 38, 
+    RIGHT: 39,
+    DOWN: 40,
+    A: 65,
+    W: 87,
+    D: 68,
+    S: 83
+  }
+  
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
 
@@ -23,8 +44,8 @@ function runProgram(){
 
   Note: You can have multiple event listeners for different types of events.
   */
-  $(document).on('eventType', handleEvent);                          
-
+  $(document).on('keydown', handleKeyDown);                          
+  $(document).on('keyup', handleKeyUp);
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -34,8 +55,13 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
+    repositionGameItem();
     
+    wallCollisions();
 
+    redrawGameItem();
+    
+    
   }
   
   /* 
@@ -44,15 +70,56 @@ function runProgram(){
   
   Note: You can have multiple event handlers for different types of events.
   */
-  function handleEvent(event) {
+  //This function detects when you press down on the arrow keys and updates the value of speedY and speedX//
+  function handleKeyDown(event) {
+    if (event.which === KEY.LEFT) {
+      walker.speedX = -5
+    } else if (event.which === KEY.UP) {
+      walker.speedY = -5
+    } else if (event.which === KEY.RIGHT) {
+      walker.speedX = 5
+    } else if (event.which === KEY.DOWN) {
+      walker.speedY = 5
+    } 
 
+    if (event.which === KEY.A) {
+      walker2.speedX = -5
+    } else if (event.which === KEY.W) {
+      walker2.speedY = -5
+    } else if (event.which === KEY.D) {
+      walker2.speedX = 5
+    } else if (event.which === KEY.S) {
+      walker2.speedY = 5
+    } 
+  }
+// This function detects when you release an arrow key and updates the value of speedY and speedX.
+  function handleKeyUp(event) {
+    if (event.which === KEY.LEFT) {
+      walker.speedX = 0
+    } else if (event.which === KEY.UP) {
+      walker.speedY = 0
+    } else if (event.which === KEY.RIGHT) {
+      walker.speedX = 0
+    } else if (event.which === KEY.DOWN) {
+      walker.speedY = 0
+    } 
+
+    if (event.which === KEY.A) {
+      walker2.speedX = 0
+    } else if (event.which === KEY.W) {
+      walker2.speedY = 0
+    } else if (event.which === KEY.D) {
+      walker2.speedX = 0
+    } else if (event.which === KEY.S) {
+      walker2.speedY = 0
+    } 
   }
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  
+  //This function detects when to end the game//
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -60,5 +127,57 @@ function runProgram(){
     // turn off event handlers
     $(document).off();
   }
-  
+  //This function adds the walker Y position to vertical speed and walker X to horizontal//
+  function repositionGameItem() {
+    walker.x += walker.speedX;
+    walker.y += walker.speedY;
+    walker2.x += walker2.speedX;
+    walker2.y += walker2.speedY;
+  }
+  //This function updates the position of the walker element//
+  function redrawGameItem() {
+    $("#walker").css("left", walker.x);
+    $("#walker").css("top", walker.y);
+    $("#walker2").css("left", walker2.x);
+    $("#walker2").css("top", walker2.y);
+  }
+  //This function detects when the walker has hit the wall//
+  function wallCollisions() {
+  // hard coded change manually if css is changed //
+    walker.right = walker.x + 50;
+    walker.bottom = walker.y + 50;
+    if (walker.bottom > $("#board").height()) {
+      walker.y -= walker.speedY
+    }
+
+    if (walker.right > $("#board").width()) {
+      walker.x -= walker.speedX 
+    }
+
+    if (walker.y < 0) {
+      walker.y -= walker.speedY
+    }
+
+    if (walker.x < 0) {
+     walker.x -= walker.speedX 
+    }
+  // hard coded change manually if css is changed // 
+    walker2.right = walker2.x + 50;
+    walker2.bottom = walker2.y + 50;
+    if (walker2.bottom > $("#board").height()) {
+      walker2.y -= walker2.speedY
+    }
+
+    if (walker2.right > $("#board").width()) {
+      walker2.x -= walker2.speedX 
+    }
+
+    if (walker2.y < 0) {
+      walker2.y -= walker2.speedY
+    }
+
+    if (walker2.x < 0) {
+     walker2.x -= walker2.speedX 
+    }
+  }
 }
