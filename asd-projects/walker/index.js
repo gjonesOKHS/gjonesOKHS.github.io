@@ -25,7 +25,7 @@ function runProgram() {
     speedX: 0,
     speedY: 0,
   };
-
+    ///This object contains the key value for the arrow and asdw keys///
   var KEY = {
     LEFT: 37,
     UP: 38,
@@ -155,38 +155,28 @@ function runProgram() {
   function wallCollisions() {
     walker.bottom = walker.y + $("#walker").height();
     walker.right = walker.x + $("#walker").width();
-    if (walker.bottom > $("#board").height()) {
+    if ((walker.bottom > $("#board").height()) || (walker.y < 0)) {
       walker.y -= walker.speedY;
     }
 
-    if (walker.y < 0) {
-      walker.y -= walker.speedY;
-    }
+   
 
-    if (walker.right > $("#board").width()) {
+    if ((walker.right > $("#board").width()) || (walker.x < 0) ) {
       walker.x -= walker.speedX;
     }
 
-    if (walker.x < 0) {
-      walker.x -= walker.speedX;
-    }
+   
 
     walker2.right = walker2.x + $("#walker2").width();
     walker2.bottom = walker2.y + $("#walker2").height();
-    if (walker2.bottom > $("#board").height()) {
+    if ((walker2.bottom > $("#board").height()) || (walker2.right > $("#board").width())) {
       walker2.y -= walker2.speedY;
     }
 
-    if (walker2.right > $("#board").width()) {
-      walker2.x -= walker2.speedX;
-    }
 
-    if (walker2.y < 0) {
+    if ((walker2.y < 0) || (walker2.x < 0)) {
       walker2.y -= walker2.speedY;
     }
 
-    if (walker2.x < 0) {
-      walker2.x -= walker2.speedX;
-    }
   }
 }
