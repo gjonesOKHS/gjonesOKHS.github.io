@@ -121,7 +121,7 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-
+  /// This function detects when to end the game///
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -169,14 +169,11 @@ function runProgram() {
 
     walker2.right = walker2.x + $("#walker2").width();
     walker2.bottom = walker2.y + $("#walker2").height();
-    if ((walker2.bottom > $("#board").height()) || (walker2.right > $("#board").width())) {
+    if (walker2.bottom > $("#board").height() || walker2.y < 0) {
       walker2.y -= walker2.speedY;
     }
-
-
-    if ((walker2.y < 0) || (walker2.x < 0)) {
-      walker2.y -= walker2.speedY;
+    if (walker2.right > $("#board").width() || (walker2.x < 0)) {
+      walker2.x -= walker2.speedX;
     }
-
   }
 }
