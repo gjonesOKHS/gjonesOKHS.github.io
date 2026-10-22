@@ -18,8 +18,7 @@ function resetAndRender() {
   render($("#display"), image);
 }
 
-// This function applies the filters to the image and is where you should call
-// all of your apply functions
+// This function applies the filters to the image and is where you should call all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
   applyFilter(reddify);
@@ -55,8 +54,7 @@ function applyFilter(filterFunction) {
 }
 
 // TODO 9 Create the applyFilterNoBackground function
-// This function applies the chosen filter to all
-// of the pixels in the image except the background
+// This function applies the chosen filter to all of the pixels in the image except the background
 function applyFilterWithNoBackground(filterFunction) {
   var backgroundColor = image[0][0];
   for (var i = 0; i < image.length; i++) {
@@ -74,8 +72,7 @@ function applyFilterWithNoBackground(filterFunction) {
 }
 
 // TODO 6: Create the keepInBounds function
-// This function keeps the value of each color between 0,
-// and 255  so that it can still be used as an rgb value
+// This function keeps the value of each color between 0, and 255  so that it can still be used as an rgb value
 function keepInBounds(num) {
   return num < 0 ? 0 : num > 255 ? 255 : num;
 }
@@ -99,24 +96,26 @@ function decreaseBlue(pixelArray) {
   keepInBounds(pixelArray[BLUE]);
 }
 
-// This function increases the green value of each effected
-// pixel by its blue value
+// This function increases the green value of each effected pixel by its blue value
 function increaseGreenByBlue(pixelArray) {
   pixelArray[GREEN] += pixelArray[BLUE];
   keepInBounds(pixelArray[GREEN]);
 }
 // CHALLENGE code goes below here
 
-// This function inverts the color of each effected pixel
+// This function reassigns a pixels rgb value to the mean of all three color values
 function greyScale(pixelArray) {
-  pixelArray[RED] = (pixelArray[RED] + pixelArray[GREEN] + pixelArray[BLUE]) / 3;
-  pixelArray[GREEN] = (pixelArray[RED] + pixelArray[GREEN] + pixelArray[BLUE]) / 3;
-  pixelArray[BLUE] = (pixelArray[RED] + pixelArray[GREEN] + pixelArray[BLUE]) / 3;
+  pixelArray[RED] =
+    (pixelArray[RED] + pixelArray[GREEN] + pixelArray[BLUE]) / 3;
+  pixelArray[GREEN] =
+    (pixelArray[RED] + pixelArray[GREEN] + pixelArray[BLUE]) / 3;
+  pixelArray[BLUE] =
+    (pixelArray[RED] + pixelArray[GREEN] + pixelArray[BLUE]) / 3;
   keepInBounds(pixelArray[RED]);
   keepInBounds(pixelArray[GREEN]);
   keepInBounds(pixelArray[BLUE]);
 }
-
+// This function inverts the color of each effected pixel
 function invertColor(pixelArray) {
   pixelArray[RED] = 255 - pixelArray[RED];
   pixelArray[GREEN] = 255 - pixelArray[GREEN];
@@ -125,4 +124,3 @@ function invertColor(pixelArray) {
   keepInBounds(pixelArray[GREEN]);
   keepInBounds(pixelArray[BLUE]);
 }
-
