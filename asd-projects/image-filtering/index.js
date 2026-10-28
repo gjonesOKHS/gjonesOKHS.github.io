@@ -93,13 +93,13 @@ function reddify(pixelArray) {
 // This function decreases the blue value of every effected pixel by 50
 function decreaseBlue(pixelArray) {
   pixelArray[BLUE] -= 50;
-  keepInBounds(pixelArray[BLUE]);
+  pixelArray[BLUE] = keepInBounds(pixelArray[BLUE]);
 }
 
 // This function increases the green value of each effected pixel by its blue value
 function increaseGreenByBlue(pixelArray) {
   pixelArray[GREEN] += pixelArray[BLUE];
-  keepInBounds(pixelArray[GREEN]);
+  pixelArray[GREEN] = keepInBounds(pixelArray[GREEN]);
 }
 // CHALLENGE code goes below here
 
